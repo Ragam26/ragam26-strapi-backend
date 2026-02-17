@@ -39,6 +39,8 @@ COPY --from=build /app/package.json ./package.json
 # Copy compiled config JS (if TypeScript configs were compiled into dist/config)
 COPY --from=build /app/dist/config ./config
 
+COPY --from=build /app/build ./build
+
 # Create persistence folders
 RUN mkdir -p /app/public/uploads /app/.cache \
     && chown -R node:node /app
