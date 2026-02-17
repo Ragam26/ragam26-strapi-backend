@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "events",
+  "info": {
+    "singularName": "event",
+    "pluralName": "events",
+    "displayName": "Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "eventName": {
+      "type": "string",
+      "required": true
+    },
+    "regFee": {
+      "type": "integer"
+    },
+    "expDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "makeMyPassUrl": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
