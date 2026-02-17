@@ -1,38 +1,29 @@
-# Stage 1: Build
-FROM node:24-alpine AS build
+FROM node:24-alpine
+
+# Install all system dependencies required for Strapi and SQLite/Postgres native bindings
 RUN apk add --no-cache build-base gcc autoconf automake libtool zlib-dev vips-dev git
 
 WORKDIR /app
+
+# Copy package files and install EVERYTHING
 COPY package.json package-lock.json ./
-# Install all dependencies (we will skip pruning to ensure ultimate stability)
 RUN npm install
 
+# Copy your entire source code into the image
 COPY . .
+
+# Build the Strapi admin panel and compile TypeScript
 ENV NODE_ENV=production
 RUN npm run build
 
-
-# Stage 2: Hardened Runtime
-FROM node:24-alpine
-RUN apk add --no-cache vips-dev
-WORKDIR /app
-
-# Copy standard production files
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/public ./public
-COPY --from=build /app/package.json ./package.json
-
-# STRAPI 5 SPECIFIC: Copy the hidden UI build and database folders
-COPY --from=build /app/.strapi ./.strapi
-COPY --from=build /app/database ./database
-
-# Create persistence folders and set ownership
+# Set up persistence folders and permissions
 RUN mkdir -p /app/public/uploads /app/.cache \
     && chown -R node:node /app
 
+# Run as a non-root user for security
 USER node
-EXPOSE 1337
-ENV NODE_ENV=production
 
+EXPOSE 1337
+
+# Start the server
 CMD ["npm", "run", "start"]
