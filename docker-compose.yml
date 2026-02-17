@@ -1,0 +1,48 @@
+services:
+  # --- The Database ---
+  strapi_db:
+    image: postgres:16-alpine
+    container_name: strapi_pg_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - strapi_db_data:/var/lib/postgresql/data
+    networks:
+      - strapi_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- The Strapi App ---
+  strapi:
+    container_name: strapi_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      strapi_db:
+        condition: service_healthy
+    env_file:
+      - .env
+      
+    environment:
+      # General
+      NODE_ENV: production
+      STRAPI_LOG_LEVEL: info
+    ports:
+      - "1337:1337"
+    networks:
+      - strapi_network
+
+networks:
+  strapi_network:
+    driver: bridge
+
+volumes:
+  strapi_db_data:
