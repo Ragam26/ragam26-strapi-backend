@@ -10,9 +10,13 @@ COPY package.json package-lock.json ./
 RUN npm i
 
 COPY . .
-# 2. Build the TS project (outputs to ./dist)
+# 2. Build the Strapi admin and then compile TypeScript server files
 ENV NODE_ENV=production
 RUN npm run build
+
+# Compile any TypeScript server/config files to JS (outputs to ./dist)
+# tsc is a devDependency so this must run before pruning
+RUN npx tsc -p tsconfig.json || true
 
 # 3. Prune dependencies to only what's needed for RUNNING
 RUN npm prune --production
@@ -32,8 +36,8 @@ COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/public ./public
 COPY --from=build /app/package.json ./package.json
-# Include runtime configuration (env-specific DB config, server config, etc.)
-COPY --from=build /app/config ./config
+# Copy compiled config JS (if TypeScript configs were compiled into dist/config)
+COPY --from=build /app/dist/config ./config
 
 # Create persistence folders
 RUN mkdir -p /app/public/uploads /app/.cache \
