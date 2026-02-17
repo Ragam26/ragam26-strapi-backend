@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # 1. Install ALL dependencies (including TypeScript compiler)
-RUN npm ci
+RUN npm i
 
 COPY . .
 # 2. Build the TS project (outputs to ./dist)
