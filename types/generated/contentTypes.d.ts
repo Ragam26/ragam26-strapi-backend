@@ -441,6 +441,18 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.Enumeration<
+      [
+        'Flagship Events',
+        'Dramatics',
+        'Kalolsavam (group)',
+        'Kalolsavam (solo)',
+        'Literary',
+        'Music',
+        'Dance',
+        'Others',
+      ]
+    >;
     cover: Schema.Attribute.Media<'images' | 'files'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

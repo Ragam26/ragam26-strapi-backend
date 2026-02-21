@@ -39,6 +39,19 @@
     "makeMyPassUrl": {
       "type": "string",
       "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Flagship Events",
+        "Dramatics",
+        "Kalolsavam (group)",
+        "Kalolsavam (solo)",
+        "Literary",
+        "Music",
+        "Dance",
+        "Others"
+      ]
     }
   }
 }
