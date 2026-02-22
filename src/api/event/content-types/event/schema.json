@@ -43,14 +43,13 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "Flagship Events",
-        "Dramatics",
+        "Flagship Events ",
+        "Dramatics ",
         "Kalolsavam (group)",
-        "Kalolsavam (solo)",
-        "Literary",
-        "Music",
-        "Dance",
-        "Others"
+        "Kalolsavam -solo-pass",
+        "M&D-pass",
+        "General-Pass",
+        "Other"
       ]
     }
   }
