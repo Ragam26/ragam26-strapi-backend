@@ -443,14 +443,13 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   attributes: {
     category: Schema.Attribute.Enumeration<
       [
-        'Flagship Events',
-        'Dramatics',
+        'Flagship Events ',
+        'Dramatics ',
         'Kalolsavam (group)',
-        'Kalolsavam (solo)',
-        'Literary',
-        'Music',
-        'Dance',
-        'Others',
+        'Kalolsavam -solo-pass',
+        'M&D-pass',
+        'General-Pass',
+        'Other',
       ]
     >;
     cover: Schema.Attribute.Media<'images' | 'files'>;
@@ -463,6 +462,37 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     expDate: Schema.Attribute.Date;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
+      Schema.Attribute.Private;
+    makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    regFee: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIInkIInk extends Struct.CollectionTypeSchema {
+  collectionName: 'i_inks';
+  info: {
+    displayName: 'I-INK';
+    pluralName: 'i-inks';
+    singularName: 'i-ink';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    eventName: Schema.Attribute.String & Schema.Attribute.Required;
+    expDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::i-ink.i-ink'> &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
@@ -1019,6 +1049,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::event.event': ApiEventEvent;
+      'api::i-ink.i-ink': ApiIInkIInk;
       'api::workshop.workshop': ApiWorkshopWorkshop;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
