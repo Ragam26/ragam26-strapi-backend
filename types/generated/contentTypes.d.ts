@@ -430,6 +430,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccommodationAccommodation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'accommodations';
+  info: {
+    displayName: 'Accommodation';
+    pluralName: 'accommodations';
+    singularName: 'accommodation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::accommodation.accommodation'
+    > &
+      Schema.Attribute.Private;
+    makeMyPassUrl: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    regFee: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCommittteeCommitttee extends Struct.CollectionTypeSchema {
   collectionName: 'committtees';
   info: {
@@ -441,6 +474,7 @@ export interface ApiCommittteeCommitttee extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    brochureUrl: Schema.Attribute.String;
     contact: Schema.Attribute.Component<'shared.contact', true>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1078,6 +1112,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::accommodation.accommodation': ApiAccommodationAccommodation;
       'api::committtee.committtee': ApiCommittteeCommitttee;
       'api::event.event': ApiEventEvent;
       'api::i-ink.i-ink': ApiIInkIInk;
