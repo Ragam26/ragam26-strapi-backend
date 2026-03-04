@@ -430,6 +430,36 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCommittteeCommitttee extends Struct.CollectionTypeSchema {
+  collectionName: 'committtees';
+  info: {
+    displayName: 'Committtee';
+    pluralName: 'committtees';
+    singularName: 'committtee';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contact: Schema.Attribute.Component<'shared.contact', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::committtee.committtee'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   collectionName: 'events';
   info: {
@@ -1048,6 +1078,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::committtee.committtee': ApiCommittteeCommitttee;
       'api::event.event': ApiEventEvent;
       'api::i-ink.i-ink': ApiIInkIInk;
       'api::workshop.workshop': ApiWorkshopWorkshop;

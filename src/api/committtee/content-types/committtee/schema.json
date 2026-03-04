@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "committtees",
+  "info": {
+    "singularName": "committtee",
+    "pluralName": "committtees",
+    "displayName": "Committtee"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "component",
+      "component": "shared.contact",
+      "repeatable": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
