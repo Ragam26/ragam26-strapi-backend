@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alumni_conclaves",
+  "info": {
+    "singularName": "alumni-conclave",
+    "pluralName": "alumni-conclaves",
+    "displayName": "Alumni Conclave"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date"
+    },
+    "eventName": {
+      "type": "string"
+    },
+    "regFee": {
+      "type": "integer"
+    },
+    "expDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "text"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "makeMyPassUrl": {
+      "type": "string"
+    }
+  }
+}

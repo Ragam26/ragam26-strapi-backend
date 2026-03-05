@@ -463,6 +463,41 @@ export interface ApiAccommodationAccommodation
   };
 }
 
+export interface ApiAlumniConclaveAlumniConclave
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'alumni_conclaves';
+  info: {
+    displayName: 'Alumni Conclave';
+    pluralName: 'alumni-conclaves';
+    singularName: 'alumni-conclave';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    eventName: Schema.Attribute.String;
+    expDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::alumni-conclave.alumni-conclave'
+    > &
+      Schema.Attribute.Private;
+    makeMyPassUrl: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    regFee: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCommittteeCommitttee extends Struct.CollectionTypeSchema {
   collectionName: 'committtees';
   info: {
@@ -1113,6 +1148,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::accommodation.accommodation': ApiAccommodationAccommodation;
+      'api::alumni-conclave.alumni-conclave': ApiAlumniConclaveAlumniConclave;
       'api::committtee.committtee': ApiCommittteeCommitttee;
       'api::event.event': ApiEventEvent;
       'api::i-ink.i-ink': ApiIInkIInk;
