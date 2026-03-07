@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "accommodations",
+  "collectionName": "sports",
   "info": {
-    "singularName": "accommodation",
-    "pluralName": "accommodations",
-    "displayName": "Accommodation"
+    "singularName": "sport",
+    "pluralName": "sports",
+    "displayName": "Sport"
   },
   "options": {
     "draftAndPublish": true

@@ -430,39 +430,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAccommodationAccommodation
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'accommodations';
-  info: {
-    displayName: 'Accommodation';
-    pluralName: 'accommodations';
-    singularName: 'accommodation';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::accommodation.accommodation'
-    > &
-      Schema.Attribute.Private;
-    makeMyPassUrl: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    regFee: Schema.Attribute.Integer;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiAlumniConclaveAlumniConclave
   extends Struct.CollectionTypeSchema {
   collectionName: 'alumni_conclaves';
@@ -594,6 +561,35 @@ export interface ApiIInkIInk extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::i-ink.i-ink'> &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    regFee: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSportSport extends Struct.CollectionTypeSchema {
+  collectionName: 'sports';
+  info: {
+    displayName: 'Sport';
+    pluralName: 'sports';
+    singularName: 'sport';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::sport.sport'> &
+      Schema.Attribute.Private;
+    makeMyPassUrl: Schema.Attribute.String;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -1147,11 +1143,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::accommodation.accommodation': ApiAccommodationAccommodation;
       'api::alumni-conclave.alumni-conclave': ApiAlumniConclaveAlumniConclave;
       'api::committtee.committtee': ApiCommittteeCommitttee;
       'api::event.event': ApiEventEvent;
       'api::i-ink.i-ink': ApiIInkIInk;
+      'api::sport.sport': ApiSportSport;
       'api::workshop.workshop': ApiWorkshopWorkshop;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
