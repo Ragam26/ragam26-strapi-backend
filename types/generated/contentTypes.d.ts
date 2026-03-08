@@ -569,6 +569,40 @@ export interface ApiIInkIInk extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProshowProshow extends Struct.CollectionTypeSchema {
+  collectionName: 'proshows';
+  info: {
+    displayName: 'Proshow';
+    pluralName: 'proshows';
+    singularName: 'proshow';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    eventName: Schema.Attribute.String;
+    expDate: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::proshow.proshow'
+    > &
+      Schema.Attribute.Private;
+    makeMyPassUrl: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    regFee: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSportSport extends Struct.CollectionTypeSchema {
   collectionName: 'sports';
   info: {
@@ -1147,6 +1181,7 @@ declare module '@strapi/strapi' {
       'api::committtee.committtee': ApiCommittteeCommitttee;
       'api::event.event': ApiEventEvent;
       'api::i-ink.i-ink': ApiIInkIInk;
+      'api::proshow.proshow': ApiProshowProshow;
       'api::sport.sport': ApiSportSport;
       'api::workshop.workshop': ApiWorkshopWorkshop;
       'plugin::content-releases.release': PluginContentReleasesRelease;
