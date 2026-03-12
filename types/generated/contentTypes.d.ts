@@ -457,6 +457,8 @@ export interface ApiAlumniConclaveAlumniConclave
     > &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -530,6 +532,8 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -561,6 +565,8 @@ export interface ApiIInkIInk extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::i-ink.i-ink'> &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -595,6 +601,8 @@ export interface ApiProshowProshow extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -625,6 +633,8 @@ export interface ApiSportSport extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String;
     name: Schema.Attribute.String;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
@@ -659,6 +669,8 @@ export interface ApiWorkshopWorkshop extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
+    pocList: Schema.Attribute.Component<'shared.contact', true>;
+    prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;

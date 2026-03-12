@@ -38,6 +38,14 @@
     "makeMyPassUrl": {
       "type": "string",
       "required": true
+    },
+    "pocList": {
+      "type": "component",
+      "component": "shared.contact",
+      "repeatable": true
+    },
+    "prizesWorth": {
+      "type": "integer"
     }
   }
 }
