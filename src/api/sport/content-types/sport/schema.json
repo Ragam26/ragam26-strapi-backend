@@ -14,6 +14,9 @@
     "name": {
       "type": "string"
     },
+    "date": {
+      "type": "date"
+    },
     "regFee": {
       "type": "integer"
     },
