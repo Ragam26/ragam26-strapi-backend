@@ -23,6 +23,9 @@
     "description": {
       "type": "text"
     },
+    "guidelines": {
+      "type": "text"
+    },
     "cover": {
       "type": "media",
       "multiple": false,
