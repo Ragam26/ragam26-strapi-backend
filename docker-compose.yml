@@ -33,11 +33,13 @@ services:
       
     environment:
       # General
-      NODE_ENV: production
-      STRAPI_LOG_LEVEL: info
+      NODE_ENV: development
+      STRAPI_LOG_LEVEL: debug
 
     volumes:
-      - /home/ragam/mounts/ragam26-strapi-backend/uploads:/app/public/uploads
+      - .:/app
+      - /app/node_modules
+      - ./public/uploads:/app/public/uploads
     ports:
       - "1337:1337"
     networks:

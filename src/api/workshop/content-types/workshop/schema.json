@@ -49,6 +49,10 @@
     },
     "prizesWorth": {
       "type": "integer"
+    },
+    "priority": {
+      "type": "integer",
+      "default": 0
     }
   }
 }
