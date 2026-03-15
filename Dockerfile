@@ -26,4 +26,4 @@ USER node
 EXPOSE 1337
 
 # Start the server
-CMD ["npm", "run", "develop"]
+CMD ["npm", "run", "start"]
