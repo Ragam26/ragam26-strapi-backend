@@ -672,6 +672,7 @@ export interface ApiWorkshopWorkshop extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     makeMyPassUrl: Schema.Attribute.String & Schema.Attribute.Required;
     pocList: Schema.Attribute.Component<'shared.contact', true>;
+    priority: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     prizesWorth: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     regFee: Schema.Attribute.Integer;
